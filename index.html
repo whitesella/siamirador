@@ -1,0 +1,24 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>Basic Mirador</title>
+  </head>
+  <body>
+    <div id="mirador-viewer"></div>
+    <script src="/sites/all/modules/sia/sia_mirador/mirador/dist/main.js"></script>
+    <script>
+      var miradorInstance = Mirador.viewer({
+        id: 'mirador',
+        windows: [{
+          id: 'known-window-id',
+          loadedManifest: 'https://iiif.harvardartmuseums.org/manifests/object/299843',
+        }],
+      });
+      // We create the action first. Note we are using a specified `windowId` here. This could be accessed from the store instead of specifying upfront.
+      var action = Mirador.actions.setCanvas('known-window-id', 'https://iiif.harvardartmuseums.org/manifests/object/299843/canvas/canvas-43182083')
+      // Now we can dispatch it.
+      miradorInstance.store.dispatch(action);
+    </script>
+  </body>
+</html>
